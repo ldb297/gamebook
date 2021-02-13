@@ -10,3 +10,4 @@
 -as a user i want to view my user information on my profile and track my discussions
 -as a user i want to search for more games to discuss
 -as a  user i want to create discussion posts with comments based on search results
+.
