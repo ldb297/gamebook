@@ -1,3 +1,5 @@
+//set up environment 
+require('dotenv').config()
 
 //import packages
 const express = require('express')
@@ -10,6 +12,7 @@ const logger = '*********************'
 const app = express()
 app.set('view engine', 'ejs')
 app.use(layouts)
+app.use(express.urlencoded({extended:false}))
 
 //routes 
 app.get('/', (req,res)=>{
@@ -17,7 +20,9 @@ app.get('/', (req,res)=>{
     res.render('index')
 })
 
-//server
+//controllers
+app.use('/home', require('./controllers/home'))
 
+//server
 const PORT = process.env.PORT || 8888
 app.listen(PORT, console.log(`🎧You're listening to WQKZ ${PORT}🎧`))
