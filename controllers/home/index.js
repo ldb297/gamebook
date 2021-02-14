@@ -19,7 +19,7 @@ router.get('/post', (req,res)=>{
     const id = req.query.id
     axios.get(`http://api.rawg.io/api/games?id=${id}`)
     .then(result =>{
-        console.log(result)
+        console.log(result.data)
         let data = result.data
         res.render('post', {data: data})
     }).catch(e =>{
