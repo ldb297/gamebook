@@ -16,13 +16,13 @@ app.set('view engine', 'ejs')
 app.use(layouts)
 app.use(express.urlencoded({extended:false}))
 app.use(express.static(__dirname + '/public'))
-app.use(reauire('morgan')('dev'))
+app.use(require('morgan')('dev'))
 
-const currentSession = process.env.currentSession 
+const CURRENT_SESSION = process.env.CURRENT_SESSION 
 const isLoggedIn = require('./middleware/isLoggedIn')
 
 const sessionObject = {
-    secret: currentSession,
+    secret: CURRENT_SESSION,
     resave: false,
     saveUninitialized: true
 }
@@ -48,7 +48,7 @@ app.get('/', (req,res)=>{
 
 //controllers
 app.use('/home', require('./controllers/home'))
-app.use('/auth', require('./controllers/auth'))
+// app.use('/auth', require('./controllers/auth'))
 
 //server
 const PORT = process.env.PORT || 8888

@@ -17,10 +17,10 @@ router.get('/', (req,res)=>{
 
 router.get('/post', (req,res)=>{
     const id = req.query.id
-    axios.get(`http://api.rawg.io/api/games?id=${id}`)
+    axios.get(`http://api.rawg.io/api/games/${id}`)
     .then(result =>{
-        console.log(result.data)
         let data = result.data
+        console.log(data)
         res.render('post', {data: data})
     }).catch(e =>{
         console.log(`${e}`)

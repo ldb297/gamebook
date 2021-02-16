@@ -1,3 +1,10 @@
-
-<p><%=data.results.platforms.platform.name%></p>
-<img src="<%=data.results.background_image%>">
+<div class="d-flex flex-column">
+    <div>
+    <p><%=data.name%></p><br/>
+    Metacritic: <%=data.metacritic%> <br />
+    <p><%=data.description_raw%></p>
+    </div>
+    <div>
+    <img style="width: 400px" src="<%=data.background_image%>"> 
+    </div>
+</div>
