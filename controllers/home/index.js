@@ -1,5 +1,6 @@
 const axios = require('axios')
 const express = require('express')
+const db = require('../../models')
 const router = express.Router()
 
 router.get('/', (req,res)=>{
@@ -20,10 +21,23 @@ router.get('/post', (req,res)=>{
     axios.get(`http://api.rawg.io/api/games/${id}`)
     .then(result =>{
         let data = result.data
+        console.log(data.slug)
         res.render('post', {data: data})
     }).catch(e =>{
         console.log(`${e}`)
     })
 })
+
+// router.post('/post/fav', (req,res)=>{
+
+//     db.user.findOne({ where: {id: currentUser.id }})
+//     .then(user =>{
+//         db.post.findOrCreate({
+//             where: {
+//                 name
+//             }
+//         }
+//     })
+// })
 
 module.exports = router

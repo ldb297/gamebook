@@ -11,8 +11,8 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
-      id: {
-        type: Sequelize.INTEGER
+      slug: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

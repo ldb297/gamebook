@@ -49,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
 user.addHook('beforeCreate', (newUser) =>{
-  let hash = bcrypt.hashSync(newUser.password, 6)
+  let hash = bcrypt.hashSync(newUser.password, 10)
   newUser.password = hash
 })
 

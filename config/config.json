@@ -1,6 +1,6 @@
 {
   "development": {
-    "database": "gamebook_dev",
+    "database": "gamebook",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
