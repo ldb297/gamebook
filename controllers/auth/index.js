@@ -13,8 +13,39 @@ router.get('/signin', (req,res)=>{
 
 router.get('/logout', (req,res)=>{
     req.logOut()
+    //try making an array of log out messages, creating a for loop to iterate through, and passing array[i] into req.flash params
     req.flash('success', 'see ya later cowboy')
     res.redirect('/')
 })
+
+router.post('/signup', async(req,res)=>{
+    try{
+        const {email, name, password} = req.body
+        const [user, created] = await db.user.findOrCreate({
+            where: {email}, 
+            defaults: {name, password}})
+            if(created){
+                console.log(`${user.name} has joined`)
+                const successObj = {
+                    successRedirect: '/',
+                    successFlash: `Welcome ${user.name}`
+                }
+                passport.authenticate('local', successObj)(req,res)
+            } else {
+                req.flash('error', 'email already exists')
+            }
+    } catch(e){
+        console.log(`oh no, sign in failed. ${e.message}!!`)
+        req.flash('error', 'email or password incorrect, please try again')
+        res.redirect('/auth/signup')
+    }
+})
+
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/',
+    successFlash: `Welcome back!`,
+    failureRedirect: '/auth/signin',
+    failureFlash: `Email or Password incorrect`
+}))
 
 module.exports = router
