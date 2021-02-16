@@ -1,10 +1,22 @@
 <div class="d-flex flex-column">
-    <div>
-    <p><%=data.name%></p><br/>
-    Metacritic: <%=data.metacritic%> <br />
-    <p><%=data.description_raw%></p>
+    <div class="d-flex">
+        <img style="width: 300px" class="ms-2" src="<%=data.background_image%>"> 
+        <div class="d-flex flex-column ms-2">
+        <p><%=data.name%></p>
+        <p>Metacritic Rating: <%=data.metacritic%></p>
+        <p class="text-justify"><%=data.description_raw%></p>
+        </div>
     </div>
-    <div>
-    <img style="width: 400px" src="<%=data.background_image%>"> 
+    <div style="width:75%" class="mx-auto mt-4">
+        <form action="/home/fav">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" name="username" class="form-control" id="username" placeholder="username">
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">Comments?</label>
+                <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+            </div>
+        </form>
     </div>
 </div>

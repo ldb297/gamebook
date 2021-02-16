@@ -48,7 +48,7 @@ app.get('/', (req,res)=>{
 
 //controllers
 app.use('/home', require('./controllers/home'))
-// app.use('/auth', require('./controllers/auth'))
+app.use('/auth', require('./controllers/auth'))
 
 //server
 const PORT = process.env.PORT || 8888
