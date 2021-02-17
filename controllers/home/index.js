@@ -28,16 +28,23 @@ router.get('/post', (req,res)=>{
     })
 })
 
-// router.post('/post/fav', (req,res)=>{
+router.get('/fav', (req,res)=>{
+    res.render('profile', [post, comment])
+})
 
-//     db.user.findOne({ where: {id: currentUser.id }})
-//     .then(user =>{
-//         db.post.findOrCreate({
-//             where: {
-//                 name
-//             }
-//         }
-//     })
-// })
+router.post('/fav', async(req,res)=>{
+    try{
+        let {username, slug, title, content} = req.body
+        let user = await db.user.findOne({ where: {name: username }})
+        let post = await db.post.findOrCreate({where: {slug, title}})
+        let comment = await db.comment.findOrCreate({where: {content}})
+        user.addPost(post)
+        user.addComment(comment)
+        post.addComment(comment)
+        res.redirect('/profile', [post, comment])
+    } catch(e){
+        console.log(`${e.message}`)
+    }
+})
 
 module.exports = router
