@@ -38,9 +38,9 @@ router.post('/fav', async(req,res)=>{
         let user = await db.user.findOne({ where: {name: username }})
         let post = await db.post.findOrCreate({where: {slug, title}})
         let comment = await db.comment.findOrCreate({where: {content}})
-        user.addPost(post)
-        user.addComment(comment)
-        post.addComment(comment)
+        await user.addPost(post)
+        await user.addComment(comment)
+        await post.addComment(comment)
         res.redirect('/profile', [post, comment])
     } catch(e){
         console.log(`${e.message}`)
