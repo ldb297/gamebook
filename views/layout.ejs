@@ -5,14 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>gamebook</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 
 <body>
     <%- include('partials/alerts') %>
     <div>
-        <div class="text-center">
+        <div class="layoutHeader">
             <h1 id="gamebook"><a href="/">gamebook</a></h1>
             <p>read | chat | chill</p>
         </div>
@@ -21,7 +20,7 @@
         <% if(!currentUser){ %>
         <p><a href="/auth/signup">sign-up</a> | <a href="/auth/signin">sign-in</a></p>
         <% } else { %>
-        <p><a href="/auth/logout">log-out</a></p>
+        <p><a href="/auth/profile">profile</a> | <a href="/auth/logout">log-out</a></p>
         </div>
     </div>
         <% } %>
