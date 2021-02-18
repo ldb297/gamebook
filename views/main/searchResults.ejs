@@ -1,0 +1,16 @@
+<div class="resultsPage">
+    <% for(let i=0; i < 10; i++){ %>
+    <p>
+        <%=data.results[i].name %>
+            <% for(let j=0; j < data.results[i].platforms.length; j++){ %>
+                <%=data.results[i].platforms[j].platform.name%>
+                     <% } %>
+    </p>
+    <form action="/home/search" method="get">
+        <input type="hidden" name="id" value="<%=data.results[i].slug%>">
+        <a href="/home/search">
+        <input type="image" name="submit" style="width: 500px" src="<%=data.results[i].background_image%>">
+        </a>
+    </form>
+    <% } %>
+</div>
