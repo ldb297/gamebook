@@ -43,7 +43,12 @@ const logger = '*********************'
 //routes 
 app.get('/', (req,res)=>{
     console.log(`${logger} landing page ${logger}`)
-    res.render('index')
+    res.render('main/index')
+})
+
+app.get('/error/404', (req,res)=>{
+    console.log(`user reached an error page`)
+    res.render('error/404')
 })
 
 //controllers
