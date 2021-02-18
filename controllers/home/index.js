@@ -10,38 +10,37 @@ router.get('/', (req,res)=>{
     axios.get(`https://api.rawg.io/api/games?search=${search}`)
     .then(result =>{
         let data = result.data
-        res.render('home', {data: data})
+        res.render('main/searchResults', {data: data})
     }).catch(e =>{
         console.log(`${e}`)
     })
 })
 
-router.get('/post', (req,res)=>{
+router.get('/search', (req,res)=>{
     const id = req.query.id
     axios.get(`http://api.rawg.io/api/games/${id}`)
     .then(result =>{
         let data = result.data
         console.log(data.slug)
-        res.render('post', {data: data})
+        res.render('main/post', {data: data})
     }).catch(e =>{
         console.log(`${e}`)
     })
 })
 
-router.get('/fav', (req,res)=>{
-    res.render('profile', [post, comment])
-})
-
-router.post('/fav', async(req,res)=>{
+router.post('/post', async(req,res)=>{
     try{
         let {username, slug, title, content} = req.body
-        let user = await db.user.findOne({ where: {name: username }})
-        let post = await db.post.findOrCreate({where: {slug, title}})
-        let comment = await db.comment.findOrCreate({where: {content}})
+        let user = await db.user.findOne({ where: {name: username }, include: [db.post, db.comment]})
+        let [post, postCreated] = await db.post.findOrCreate({where: {slug, title}, include: [db.comment]})
+        let [comment, commentCreated] = await db.comment.findOrCreate({where: {content}})
         await user.addPost(post)
         await user.addComment(comment)
         await post.addComment(comment)
-        res.redirect('/profile', [post, comment])
+        console.log(user)
+        console.log(post)
+        console.log(comment)
+        res.redirect('/auth/profile')
     } catch(e){
         console.log(`${e.message}`)
     }
