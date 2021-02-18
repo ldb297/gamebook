@@ -3,8 +3,61 @@ a {
     color: black;
 }
 
+.layoutHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#gamebook {
+    margin-bottom: -20px;
+}
+
 #authLinks {
     text-align: right;
     margin-top: -40px;
     margin-right: 10px;
+}
+
+.profilePost {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+}
+
+.profilePostImage {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    margin-right: 10px;
+    margin-top: -2px;
+}
+
+.profilePostImageInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.profilePostInfo {
+    margin-left: 10px;
+}
+
+.postComments {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.resultsPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
