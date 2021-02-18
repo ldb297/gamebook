@@ -1,0 +1,26 @@
+<div class="d-flex flex-column">
+    <div class="d-flex">
+        <img style="width: 300px" class="ms-2" src="<%=data.background_image%>"> 
+        <div class="d-flex flex-column ms-2">
+        <p><%=data.name%></p>
+        <p>Metacritic Rating: <%=data.metacritic%></p>
+        <p class="text-justify"><%=data.description_raw%></p>
+        </div>
+    </div>
+
+    <% if(currentUser) { %>
+    <div style="width:75%" class="mx-auto mt-4">
+        <form action="/home/post" method="POST">
+                <input type="hidden" name="username" value="<%=currentUser.name%>">
+                <input type="hidden" name="slug" value="<%=data.slug%>">
+                <input type="hidden" name="title" value="<%=data.name%>">
+            <div class="mb-3">
+                <label for="content" class="form-label">Comments?</label>
+                <button type="submit" value="Update">submit!</button>
+                <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+            </div>
+        </form>
+    </div>
+    <% } %>
+
+</div>
