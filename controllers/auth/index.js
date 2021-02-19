@@ -3,6 +3,7 @@ const axios = require('axios')
 const passport = require('passport')
 const router = express.Router()
 const db = require('../../models')
+const key = process.env.API_KEY
 
 router.get('/signup', (req,res)=>{
     res.render('auth/signup')
@@ -18,7 +19,7 @@ router.get('/profile', async(req, res) => {
         for(let i = 0; i < posts.length; i++){
             let thisPost = posts[i]
             thisPost.comments = await db.comment.findAll({ where: { postId: thisPost.get().id}, include: [db.post, db.user]})
-            const result = await axios.get(`http://api.rawg.io/api/games/${thisPost.get().slug}`)
+            const result = await axios.get(`http://api.rawg.io/api/games/${thisPost.get().slug}?key=${key}`)
             thisPost.result = result.data
         }
         res.render('auth/profile', {posts})
@@ -45,10 +46,10 @@ router.delete('/profile/delete', async(req,res)=>{
     const comment = await db.comment.findOne({ where: {id: req.body.deleteComment}})
     await comment.destroy()
     console.log(`Comment Deleted`)
-    res.redirect('../../../auth/profile')
+    res.redirect('/auth/profile')
     } catch(e){
         console.log(`error occured, ${comment} was not deleted`)
-        res.redirect('auth/profile')
+        res.redirect('/auth/profile')
     }
 })
 
