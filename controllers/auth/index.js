@@ -1,4 +1,5 @@
 const express = require('express')
+const axios = require('axios')
 const passport = require('passport')
 const router = express.Router()
 const db = require('../../models')
@@ -9,6 +10,22 @@ router.get('/signup', (req,res)=>{
 
 router.get('/signin', (req,res)=>{
     res.render('auth/signin')
+})
+
+router.get('/profile', async (req, res) => {
+    try {
+        const posts = await req.user.getPosts()
+        for(let i = 0; i < posts.length; i++){
+            let thisPost = posts[i]
+            thisPost.comments = await db.comment.findAll({ where: { postId: thisPost.get().id}, include: [db.post, db.user]})
+            const result = await axios.get(`http://api.rawg.io/api/games/${thisPost.get().slug}`)
+            thisPost.result = result.data
+        }
+        console.log(posts)
+        res.render('auth/profile', {posts})
+    } catch (e) {
+        console.log(`${e.message}`)
+    }
 })
 
 router.get('/logout', (req,res)=>{
@@ -49,3 +66,22 @@ router.post('/login', passport.authenticate('local', {
 }))
 
 module.exports = router
+
+        //const comments = await db.comment.findAll({ where: { userId: req.user.id }, include: [db.post] })
+        // for (let i = 0; i < comments.length; i++) {
+        //     let postItem = comments[i].post.get()
+        //     const result = await axios.get(`http://api.rawg.io/api/games/${postItem.slug}`)
+        //     let postObj = {
+        //         id: postItem.id,
+        //         image: result.data.background_image,
+        //         name: result.data.name,
+        //         metacritic: result.data.metacritic,
+        //         desc: result.data.description_raw
+        //     }
+        //     postArray.push(postObj)
+        //     // for(let j = 0; j < postArray.length; j++){
+        //     //     if(postObj.id === postArray[j].postObj.id){
+        //     //     postArray.pop(postArray[j])
+        //     //     }
+        //     // }
+        // }

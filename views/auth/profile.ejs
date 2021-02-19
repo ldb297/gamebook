@@ -1,0 +1,18 @@
+<% for(let i = 0; i < posts.length; i++){ %>
+    <div class="profilePost">
+        <p><%=posts[i].result.name%> | Metacritic Rating: <%=posts[i].result.metacritic%></p>
+        <div class="profilePostImageInfo">
+        <div class="profilePostImage">
+            <img style="height:228px" src="<%=posts[i].result.background_image%>"> 
+        </div>
+        <div class="profilePostInfo">
+            <textarea name="profilePostInfo" cols="35" rows="15"><%=posts[i].result.description_raw%></textarea>
+        </div>
+    </div>
+    </div>
+    <% for(let j = 0; j < posts[i].comments.length; j++){ %> 
+    <div class="postComments">
+        <p><%= posts[i].comments[j].get().content %> </p>
+    </div>
+    <% } %>  
+<% } %> 
