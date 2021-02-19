@@ -10,6 +10,7 @@ const axios = require('axios')
 const session = require('express-session')
 const passport = require('./config/ppConfig')
 const flash = require('connect-flash')
+const db = require('./models')
 
 //set middleware
 const app = express()
@@ -43,7 +44,9 @@ app.use((req,res, next)=>{
 const logger = '*********************'
 
 //routes 
-app.get('/', (req,res)=>{
+app.get('/', async(req,res)=>{
+    const posts = await db.post.findAll({ include: [db.comment] })
+    console.log(posts)
     console.log(`${logger} landing page ${logger}`)
     res.render('main/index')
 })

@@ -9,6 +9,10 @@ a {
     color: black;
 }
 
+textarea:focus {
+    outline: 2px solid #000227;
+}
+
 input[type=text]{
     background-color: #a0a0a0;
 }
@@ -34,6 +38,10 @@ input[type=password]:focus{
 }
 button {
     background-color: #a0a0a0;
+}
+
+button:focus {
+    outline: black;
 }
 
 .layoutHeader {
@@ -140,6 +148,54 @@ button {
     margin-bottom: 75px;
     min-width: 500px;
     max-width: 80%;
+}
+
+.postBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.postImage {
+    min-width: 500px;
+    max-width: 80%;
+}
+
+.postText{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.postDesc {
+    min-width: 450px;
+    max-width: 90%;
+    min-height: 150px;
+    max-height: 30%;
+}
+
+.postCommentBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.postCommentTextBox {
+    background-color: #b0b0b0;
+    min-width: 405px;
+    max-width: 88%;
+    min-height: 135;
+    max-height: 28%;
+}
+
+.postCommentTextBox:focus {
+    background-color: whitesmoke;
+    outline: 2px solid black;
 }
 
 .profilePost {

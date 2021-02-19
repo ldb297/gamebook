@@ -13,7 +13,7 @@
     <% for(let j = 0; j < posts[i].comments.length; j++){ %> 
         <% let thisComment = posts[i].comments[j].get() %> 
     <div class="postComments">
-        <p><%= thisComment.content %> </p>
+        <p>@<%= thisComment.user.get().name %> | <%= thisComment.content %> </p>
         <div class="updateForm">
             <form action="/auth/profile/update/?_method=PUT" method="POST">
                 <input type="hidden" name="editComment" value="<%= thisComment.id %>">
