@@ -12,7 +12,7 @@ router.get('/signin', (req,res)=>{
     res.render('auth/signin')
 })
 
-router.get('/profile', async (req, res) => {
+router.get('/profile', async(req, res) => {
     try {
         const posts = await req.user.getPosts()
         for(let i = 0; i < posts.length; i++){
@@ -21,7 +21,6 @@ router.get('/profile', async (req, res) => {
             const result = await axios.get(`http://api.rawg.io/api/games/${thisPost.get().slug}`)
             thisPost.result = result.data
         }
-        console.log(posts)
         res.render('auth/profile', {posts})
     } catch (e) {
         console.log(`${e.message}`)
@@ -33,6 +32,24 @@ router.get('/logout', (req,res)=>{
     //try making an array of log out messages, creating a for loop to iterate through, and passing array[i] into req.flash params
     req.flash('success', 'see ya later cowboy')
     res.redirect('/')
+})
+
+// router.put('/profile/delete', async(req,res)=>{
+//     try{
+//         const comment = await db.comment.findOne({ where: {id: req.body.editComment}})
+//     }
+// })
+
+router.delete('/profile/delete', async(req,res)=>{
+    try{
+    const comment = await db.comment.findOne({ where: {id: req.body.deleteComment}})
+    await comment.destroy()
+    console.log(`Comment Deleted`)
+    res.redirect('../../../auth/profile')
+    } catch(e){
+        console.log(`error occured, ${comment} was not deleted`)
+        res.redirect('auth/profile')
+    }
 })
 
 router.post('/signup', async(req,res)=>{
