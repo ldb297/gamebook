@@ -48,7 +48,7 @@ app.get('/', async(req,res)=>{
     const posts = await db.post.findAll({ include: [db.comment] })
     console.log(posts)
     console.log(`${logger} landing page ${logger}`)
-    res.render('main/index')
+    res.render('main/index', {posts})
 })
 
 app.get('/error/404', (req,res)=>{
