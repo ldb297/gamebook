@@ -16,15 +16,15 @@ router.get('/', (req,res)=>{
     })
 })
 
-router.get('/search', (req,res)=>{
-    const id = req.query.id
-    axios.get(`http://api.rawg.io/api/games/${id}`)
-    .then(result =>{
+router.get('/search', async(req,res)=>{
+    try {
+        const id = req.query.id
+        let result = await axios.get(`http://api.rawg.io/api/games/${id}`)
         let data = result.data
-        res.render('main/post', {data: data})
-    }).catch(e =>{
-        console.log(`${e}`)
-    })
+        res.render('main/post', {data})
+    } catch(e){
+        console.log(`${e.message}`)
+    }
 })
 
 router.post('/post', async(req,res)=>{
