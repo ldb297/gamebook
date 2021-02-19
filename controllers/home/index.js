@@ -2,13 +2,13 @@ const axios = require('axios')
 const express = require('express')
 const db = require('../../models')
 const router = express.Router()
+const key = process.env.API_KEY
 
 router.get('/', async(req,res)=>{
     try {
     const search = req.query.search
-    // const key = process.env.API_KEY
-    // let qs = {params: {s: search, apikey: process.env.API_KEY, }}
-    let result = await axios.get(`https://api.rawg.io/api/game?search=${search}`)
+    let result = await axios.get(`https://api.rawg.io/api/games?key=${key}&search=${search}`)
+    let data = result.data
     res.render('main/searchResults', {data})
     } catch(e){
         console.log(`${e.message}`)
@@ -18,7 +18,7 @@ router.get('/', async(req,res)=>{
 router.get('/search', async(req,res)=>{
     try {
         const id = req.query.id
-        let result = await axios.get(`http://api.rawg.io/api/games/${id}`)
+        let result = await axios.get(`http://api.rawg.io/api/games/${id}?key=${key}`)
         let data = result.data
         res.render('main/post', {data})
     } catch(e){
