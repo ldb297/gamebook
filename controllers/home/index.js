@@ -21,7 +21,6 @@ router.get('/search', (req,res)=>{
     axios.get(`http://api.rawg.io/api/games/${id}`)
     .then(result =>{
         let data = result.data
-        console.log(data.slug)
         res.render('main/post', {data: data})
     }).catch(e =>{
         console.log(`${e}`)
@@ -37,9 +36,6 @@ router.post('/post', async(req,res)=>{
         await user.addPost(post)
         await user.addComment(comment)
         await post.addComment(comment)
-        console.log(user)
-        console.log(post)
-        console.log(comment)
         res.redirect('/auth/profile')
     } catch(e){
         console.log(`${e.message}`)

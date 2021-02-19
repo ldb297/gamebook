@@ -1,6 +1,39 @@
+body {
+    font-family: 'Roboto Mono', monospace;
+    background-color: #a0a0a0;
+    color: #000227;
+}
+
 a {
     text-decoration: none;
     color: black;
+}
+
+input[type=text]{
+    background-color: #a0a0a0;
+}
+
+input[type=email] {
+    background-color: #a0a0a0;
+}
+
+input[type=password]{
+    background-color: #a0a0a0;
+}
+
+input[type=text]:focus{
+    outline: 2px solid black;
+}
+
+input[type=email]:focus{
+    outline: 2px solid black;
+}
+
+input[type=password]:focus{ 
+    outline: 2px solid black;
+}
+button {
+    background-color: #a0a0a0;
 }
 
 .layoutHeader {
@@ -8,16 +41,105 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-bottom: 2px solid black;
+    margin-top: -10px;
+    margin-bottom: 20px;
 }
 
 #gamebook {
+    margin-bottom: -10px;
+}
+
+.signLinks {
+    text-align: right;
+    margin-top: -60px;
+    margin-bottom: 28px;
+    margin-right: 10px;
+}
+
+.profLinks {
+    text-align: right;
+    margin-top: -60px;
+    margin-bottom: 28px;
+    margin-right: 10px;
+}
+
+.indexSearch {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.welcomeText {
+    margin: 2px;
+}
+
+.searchForm {
+    margin: 2px;
+}
+
+.searchButton {
+    margin: 3px;
+    transition-duration: 0.4s;
+  }
+  
+.searchButton:hover {
+    color: white;
+}
+
+.signupForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.usernameSection {
+    margin-left: -32px;
+}
+
+.emailSection {
+    margin-left: -70px;
+}
+
+.passwordSection {
+    margin-left: -98px;
+}
+
+.signinForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.signinEmail {
+    margin-left: -45px;
+}
+
+.signinPassword {
+    margin-left: -73px;
+}
+
+.resultsPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.resultTitle {
     margin-bottom: -20px;
 }
 
-#authLinks {
-    text-align: right;
-    margin-top: -40px;
-    margin-right: 10px;
+#resultImage {
+    margin-bottom: 75px;
+    min-width: 500px;
+    max-width: 80%;
 }
 
 .profilePost {
@@ -55,9 +177,20 @@ a {
     align-items: center;
 }
 
-.resultsPage {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-}
+@media (max-width: 600px) {
+    .signLinks {
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+        margin-top: -80px;
+        margin-right: 10px;
+    }
+    
+    .profLinks {
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+        margin-top: -80px;
+        margin-right: 10px;
+    }
+  }

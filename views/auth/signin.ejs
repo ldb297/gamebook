@@ -1,12 +1,14 @@
-sign in!
-
-<form action="/auth/login" method="POST">
-    <label for="auth-email">email</label>
+<div class="signinForm">sign in!
+  <form action="/auth/login" method="POST">
+    <div class="signinEmail">
+    <label for="auth-email">email | </label>
     <input id="auth-email" type="email" name="email">
-  
-    <label for="auth-password">password</label>
+    </div>
+
+    <div class="signinPassword">
+    <label for="auth-password">password | </label>
     <input id="auth-password" type="password" name="password">
-  
-    <input type="submit" value="Log In">
+    </div>
+    <input type="submit" value="Sign In">
   </form>
-  
+</div>

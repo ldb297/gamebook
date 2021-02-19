@@ -66,22 +66,3 @@ router.post('/login', passport.authenticate('local', {
 }))
 
 module.exports = router
-
-        //const comments = await db.comment.findAll({ where: { userId: req.user.id }, include: [db.post] })
-        // for (let i = 0; i < comments.length; i++) {
-        //     let postItem = comments[i].post.get()
-        //     const result = await axios.get(`http://api.rawg.io/api/games/${postItem.slug}`)
-        //     let postObj = {
-        //         id: postItem.id,
-        //         image: result.data.background_image,
-        //         name: result.data.name,
-        //         metacritic: result.data.metacritic,
-        //         desc: result.data.description_raw
-        //     }
-        //     postArray.push(postObj)
-        //     // for(let j = 0; j < postArray.length; j++){
-        //     //     if(postObj.id === postArray[j].postObj.id){
-        //     //     postArray.pop(postArray[j])
-        //     //     }
-        //     // }
-        // }

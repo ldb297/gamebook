@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>gamebook</title>
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -13,18 +15,19 @@
     <div>
         <div class="layoutHeader">
             <h1 id="gamebook"><a href="/">gamebook</a></h1>
-            <p>read | chat | chill</p>
+            <div class="rccText">
+                <p>read | chat | chill</p>  
+            </div>
         </div>
 
-        <div id="authLinks">
+        <div class="authLinks">
         <% if(!currentUser){ %>
-        <p><a href="/auth/signup">sign-up</a> | <a href="/auth/signin">sign-in</a></p>
+        <p class="signLinks"><a href="/auth/signup">sign-up</a> | <a href="/auth/signin">sign-in</a></p>
         <% } else { %>
-        <p><a href="/auth/profile">profile</a> | <a href="/auth/logout">log-out</a></p>
+        <p class="profLinks"><a href="/auth/profile">profile</a> | <a href="/auth/logout">log-out</a></p>
         </div>
     </div>
         <% } %>
-    <hr>
     <%- body %>
 </body>
 
