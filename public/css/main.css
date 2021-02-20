@@ -249,7 +249,7 @@ button:focus {
         display: flex;
         flex-direction: column;
         text-align: right;
-        margin-top: -80px;
+        margin-top: -90px;
         margin-right: 10px;
     }
 
