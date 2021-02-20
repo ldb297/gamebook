@@ -35,16 +35,26 @@ router.get('/logout', (req,res)=>{
     res.redirect('/')
 })
 
-// router.put('/profile/delete', async(req,res)=>{
-//     try{
-//         const comment = await db.comment.findOne({ where: {id: req.body.editComment}})
-//     }
-// })
+router.put('/profile/update', async(req, res) => {
+    try {
+        await db.comment.update({
+            content: req.body.content
+        },
+            {
+                where:
+                    { id: req.body.commentId }
+            })
+        res.redirect('/auth/profile')
+    } catch (e) {
+        console.log(`${e.message}`)
+    }
+})
 
 router.delete('/profile/delete', async(req,res)=>{
     try{
-    const comment = await db.comment.findOne({ where: {id: req.body.deleteComment}})
-    await comment.destroy()
+        await db.comment.destroy({ where: {id: req.body.deleteComment}})
+    // const comment = await db.comment.findOne({ where: {id: req.body.deleteComment}})
+    // await comment.destroy()
     console.log(`Comment Deleted`)
     res.redirect('/auth/profile')
     } catch(e){
