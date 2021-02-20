@@ -9,4 +9,18 @@
         <button type="submit" id="searchButton">search</button>
     </div>
     </form>
+
+    <div class="indexPosts">
+        <h4 id="currentUserPosts">Current User Posts</h4>
+        <% for(let i = 0; i < posts.length; i++) {%> 
+        <div class="indexPostTitle">
+            <%= posts[i].get().title%> 
+        </div>
+        <div class="indexPostUsers">
+            <% for(let j = 0; j < posts[i].users.length; j++) {%> 
+            <%= posts[i].users[j].get().name %> 
+            </div><br/>
+            <% } %> 
+        <% } %> 
+    </div>
 </div>
