@@ -2,7 +2,7 @@
     <% for(let i=0; i < 10; i++){ %>
     <p>
         <div class="resultTitle">
-        <%=data.results[i].name %>
+        <%=data.results[i].name %><br/>
             <% for(let j=0; j < data.results[i].platforms.length; j++){ %>
                 <%=data.results[i].platforms[j].platform.name%>
                      <% } %>
