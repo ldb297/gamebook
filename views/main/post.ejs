@@ -6,16 +6,22 @@
     <div class="postImageBox">
         <img class="postImage" src="<%=data.background_image%>"> 
     </div>
-    <textarea class="postDesc"><%=data.description_raw%></textarea>
+    <div class="postDesc"><br/><%=data.description_raw%></div>
 </div>
 <div class="comments">
+    <h3>
 <% for(let i = 0; i < posts.length; i++) { %>
     <% let thisPost = posts[i].get() %> 
     <% for(let j = 0; j < thisPost.comments.length; j++) { %>
         <% let thisComment = thisPost.comments[j].get() %>
-        <%= thisComment.content %> 
+        <% for(let n = 0; n < thisPost.users.length; n++) { %> 
+            <% if(thisPost.users[n].id === thisComment.userId){ %> 
+            @<%= thisPost.users[n].name %> | <%= thisComment.content %><br/>
+            <% } %> 
+        <% } %> 
     <% } %>
-<% } %>  
+<% } %>
+</h3>  
 </div>
     <% if(currentUser) { %>
     <div class="postCommentBox">
