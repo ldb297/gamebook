@@ -20,7 +20,9 @@ router.get('/search', async(req,res)=>{
         const id = req.query.id
         let result = await axios.get(`http://api.rawg.io/api/games/${id}?key=${key}`)
         let data = result.data
-        res.render('main/post', {data})
+        let posts = await db.post.findAll({where: {slug: id}, include: [db.comment, db.user]})
+        console.log(posts)
+        res.render('main/post', {data, posts})
     } catch(e){
         console.log(`${e.message}`)
     }
