@@ -182,6 +182,14 @@ button:focus {
     outline: 2px solid black;
 }
 
+.comments {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .profilePost {
     display: flex;
     flex-direction: column;
