@@ -279,4 +279,22 @@ button:focus {
         margin-top: 15px;
     }
 
+    .postImage {
+        align-items: center;
+        margin-bottom: 75px;
+        max-width: 95%;
+        min-width: 250px;
+    }
+
+    .postDesc {
+        align-items: center;
+        margin-bottom: 75px;
+        max-width: 95%;
+        min-width: 250px;
+    }
+
+    .comments {
+        margin-top: 20px;
+    }
+
   }
