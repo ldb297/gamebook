@@ -129,6 +129,8 @@ button:focus {
 }
 
 #resultImage {
+    justify-content: center;
+    align-items: center;
     margin-bottom: 75px;
     min-width: 500px;
     max-width: 80%;
