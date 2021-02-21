@@ -13,8 +13,13 @@
     <div class="indexPosts">
         <h4 id="currentUserPosts">Current User Posts</h4>
         <% for(let i = 0; i < posts.length; i++) {%> 
+            <% let thisPost = posts[i].get() %> 
         <div class="indexPostTitle">
-            <%= posts[i].get().title%> 
+            <form action="/home/search" method="get">
+                <input type="hidden" name="id" value="<%=thisPost.slug%>">
+                <%= thisPost.title %>
+                <button type="submit">see post</button>
+        </form>
         </div>
         <div class="indexPostUsers">
             <% for(let j = 0; j < posts[i].users.length; j++) {%> 
