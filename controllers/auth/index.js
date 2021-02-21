@@ -37,13 +37,7 @@ router.get('/logout', (req,res)=>{
 
 router.put('/profile/update', async(req, res) => {
     try {
-        await db.comment.update({
-            content: req.body.content
-        },
-            {
-                where:
-                    { id: req.body.commentId }
-            })
+        await db.comment.update({content: req.body.content}, {where: {id: req.body.commentId}})
         res.redirect('/auth/profile')
     } catch (e) {
         console.log(`${e.message}`)
