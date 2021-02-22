@@ -49,10 +49,11 @@ app.get('/', async(req,res)=>{
     res.render('main/index', {posts})
 })
 
-app.get('/error/404', (req,res)=>{
-    console.log(`user reached an error page`)
-    res.render('error/404')
-})
+
+app.get('*', (req, res)=>{
+    console.log(`beep boop bonk`)
+    res.status(404).render('error/404');
+});
 
 //controllers
 app.use('/home', require('./controllers/home'))
