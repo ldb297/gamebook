@@ -3,6 +3,7 @@ const axios = require('axios')
 const passport = require('passport')
 const router = express.Router()
 const db = require('../../models')
+const randomAlert = require('../../middleware/randomAlerts')
 const key = process.env.API_KEY
 
 router.get('/signup', (req,res)=>{
@@ -31,7 +32,7 @@ router.get('/profile', async(req, res) => {
 router.get('/logout', (req,res)=>{
     req.logOut()
     //try making an array of log out messages, creating a for loop to iterate through, and passing array[i] into req.flash params
-    req.flash('success', 'see ya later cowboy')
+    req.flash('success', randomAlert())
     res.redirect('/')
 })
 
