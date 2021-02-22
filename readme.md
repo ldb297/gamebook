@@ -15,7 +15,7 @@ There are a few steps to hosting this application locally. (must have node and p
 
  ## Current Features
 -landing page displays ongoing threads
--profile page displaying user info and related threads
+-profile page displays related threads
 -single discussion page displaying responsive api data with scrolling comments box
 -search page for finding new games to discuss
  
