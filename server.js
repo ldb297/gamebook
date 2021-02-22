@@ -47,10 +47,12 @@ const logger = '*********************'
 app.get('/', async(req,res)=>{
     const posts = await db.post.findAll({ include: [db.user, db.comment] })
     res.render('main/index', {posts})
+}).catch(error =>{
+    res.redirect('/404')
 })
 
 
-app.get('*', (req, res)=>{
+app.get('/404', (req, res)=>{
     console.log(`beep boop bonk`)
     res.status(404).render('error/404');
 });
