@@ -28,6 +28,14 @@ button:focus {
     outline: black;
 }
 
+.errorMessage {
+    text-align: center;
+}
+
+.successMessage {
+    text-align: center;
+}
+
 .layoutHeader {
     display: flex;
     flex-direction: column;
