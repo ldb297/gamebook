@@ -45,10 +45,13 @@ const logger = '*********************'
 
 //routes 
 app.get('/', async(req,res)=>{
-    const posts = await db.post.findAll({ include: [db.user, db.comment] })
-    res.render('main/index', {posts})
-}).catch(error =>{
-    res.redirect('/404')
+    try{
+        const posts = await db.post.findAll({ include: [db.user, db.comment] })
+        res.render('main/index', {posts})
+    } catch(error){
+        console.log(error)
+        res.redirect('/404')
+    }
 })
 
 
