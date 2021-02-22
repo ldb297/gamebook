@@ -259,6 +259,11 @@ button:focus {
     color: black
 }
 
+.errorHeader {
+    text-align: center;
+    letter-spacing: 4px;
+}
+
 @media (max-width: 750px) {
     .signLinks {
         display: flex;
