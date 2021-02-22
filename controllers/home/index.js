@@ -10,8 +10,9 @@ router.get('/', async(req,res)=>{
     let result = await axios.get(`https://api.rawg.io/api/games?key=${key}&search=${search}`)
     let data = result.data
     res.render('main/searchResults', {data})
-    } catch(e){
-        console.log(`${e.message}`)
+    } catch(error){
+        console.log(error)
+        res.redirect('/404')
     }
 })
 
@@ -22,8 +23,9 @@ router.get('/search', async(req,res)=>{
         let data = result.data
         let posts = await db.post.findAll({where: {slug: id}, include: [db.comment, db.user]})
         res.render('main/post', {data, posts})
-    } catch(e){
-        console.log(`${e.message}`)
+    } catch(error){
+        console.log(error)
+        res.redirect('/404')
     }
 })
 
@@ -37,8 +39,9 @@ router.post('/post', async(req,res)=>{
         await user.addComment(comment)
         await post.addComment(comment)
         res.redirect('/auth/profile')
-    } catch(e){
-        console.log(`${e.message}`)
+    } catch(error){
+        console.log(error)
+        res.redirect('/404')
     }
 })
 

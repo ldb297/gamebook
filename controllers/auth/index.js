@@ -6,12 +6,22 @@ const db = require('../../models')
 const randomAlert = require('../../middleware/randomAlerts')
 const key = process.env.API_KEY
 
-router.get('/signup', (req,res)=>{
-    res.render('auth/signup')
+router.get('/signup', async(req,res)=>{
+    try{
+        res.render('auth/signup')
+    } catch(error){
+        console.log(error)
+        res.redirect('/404')
+    }
 })
 
-router.get('/signin', (req,res)=>{
-    res.render('auth/signin')
+router.get('/signin', async(req,res)=>{
+    try{
+        res.render('auth/signin')
+    }catch(error){
+        console.log(error)
+        res.redirect('/404')
+    }
 })
 
 router.get('/profile', async(req, res) => {
@@ -24,24 +34,30 @@ router.get('/profile', async(req, res) => {
             thisPost.result = result.data
         }
         res.render('auth/profile', {posts})
-    } catch (e) {
-        console.log(`${e.message}`)
+    } catch(error){
+        console.log(error)
+        res.redirect('/404')
     }
 })
 
-router.get('/logout', (req,res)=>{
-    req.logOut()
-    //try making an array of log out messages, creating a for loop to iterate through, and passing array[i] into req.flash params
-    req.flash('success', randomAlert())
-    res.redirect('/')
+router.get('/logout', async(req,res)=>{
+    try{
+        req.logOut()
+        req.flash('success', randomAlert())
+        res.redirect('/')
+    }catch(error){
+        console.log(error)
+        res.redirect('/404')
+    }
 })
 
 router.put('/profile/update', async(req, res) => {
     try {
         await db.comment.update({content: req.body.content}, {where: {id: req.body.commentId}})
         res.redirect('/auth/profile')
-    } catch (e) {
-        console.log(`${e.message}`)
+    } catch(error){
+        console.log(error)
+        res.redirect('/404')
     }
 })
 
