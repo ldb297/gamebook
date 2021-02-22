@@ -68,7 +68,7 @@ router.post('/signup', async(req,res)=>{
                 console.log(`${user.name} has joined`)
                 const successObj = {
                     successRedirect: '/',
-                    successFlash: `Welcome ${user.name}`
+                    successFlash: `${name} has joined the book`
                 }
                 passport.authenticate('local', successObj)(req,res)
             } else {
@@ -76,14 +76,14 @@ router.post('/signup', async(req,res)=>{
             }
     } catch(e){
         console.log(`oh no, sign in failed. ${e.message}!!`)
-        req.flash('error', 'email or password incorrect, please try again')
+        req.flash('error', 'email or password incorrect, please try again >_<')
         res.redirect('/auth/signup')
     }
 })
 
 router.post('/login', passport.authenticate('local', {
     successRedirect: '/',
-    successFlash: `Welcome back,`,
+    successFlash: `Welcome back to the book, gamer!`,
     failureRedirect: '/auth/signin',
     failureFlash: `Email or Password incorrect`
 }))
